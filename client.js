@@ -40,11 +40,40 @@ const employees = [
 // Ask questions when you don't.
 
 //console.log( employees );
-let employee = '';
-function callEmployee(employee) {
-  for (employee of employees){
-    console.log('Name', employee);
+function employeeBonus(employeeIn) {
+  // console.log(employeeIn);
+  let bonusPercent = 0; // 0
+  // 47000 * 0 = 0
+  // let totalBonus = bonusPercent * employeeIn.annualSalary;
+  if (employeeIn.reviewRating <= 2){
+    console.log('No bonus for you!', employeeIn.name);
+    bonusPercent += 0;
+  } else if(employeeIn.reviewRating === 3) {
+    console.log('You get a small bonus ', employeeIn.name);
+    bonusPercent += 0.04; // 0.04
+    
   }
-  
+  // ...
+
+  // This is where we for sure know the bonusPercent
+  // 47000 * 0.04 = 1880
+  let totalBonus = bonusPercent * employeeIn.annualSalary;
+  // Number.parseInt() turns a string into a number. '47000' -> 47000
+  // 1880 + '47000' = '188047000', 1880 + 47000 = 48880
+  let totalCompensation = totalBonus + Number.parseInt(employeeIn.annualSalary);
+  return {
+    name: employeeIn.name, 
+    annualSalary: employeeIn.annualSalary,
+    bonusPercent: bonusPercent,
+    totalBonus,
+    totalCompensation
+    // ...
+  };
 }
-  console.log(callEmployee(4));
+// Calculate a specific employee bonus
+// console.log(employeeBonus(employees[0]));
+// Calculate all employee bonuses
+for (let employee of employees) {
+  // Atticus is passed into the function
+  console.log( employeeBonus(employee) );
+}
